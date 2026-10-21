@@ -23,7 +23,7 @@ greške i pitanja prijavite ovdje (Issues).
 ## Installation
 
 1. Download this branch (or clone it: `git clone -b 19.0 https://github.com/kalamiridev/odoo-croatia.git`) into a folder
-   on the addons path of your Odoo, or install the modules from the [Odoo Apps Store](https://apps.odoo.com).
+   on the addons path of your Odoo.
 2. Apps → Update Apps List → search the module → Activate.
 
 Each module's README (in Croatian) describes the setup step by step.
