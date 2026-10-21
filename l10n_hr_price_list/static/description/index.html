@@ -1,0 +1,78 @@
+<section class="container py-4" style="max-width: 1000px;">
+  <div class="text-center mb-4">
+    <h1 style="color:#0b121a;">Public Price List for Consumers</h1>
+    <h4 class="text-muted">Croatia · Government decisions NN 101/26 · Odoo 19 Community and Enterprise</h4>
+    <p class="mt-3">
+      Publishes the machine-readable price list (CSV) that Croatian shops, service providers and web shops
+      with a website must publish for every premises, with the additional (anchor) price next to every price.
+    </p>
+  </div>
+
+  <div class="alert alert-info">
+    <strong>Hrvatski:</strong> javni cjenik za potrošače u CSV datoteci za svaki objekt (prodavaonica, ured,
+    salon, web shop), s dodatnom cijenom i datumom, arhivom od 30 dana, akcijama iz cjenika i webhookom
+    za vašu mrežnu stranicu (Odluke NN 101/26). Upute na hrvatskom su u README-u modula.
+  </div>
+
+  <h2 class="mt-5">What it does</h2>
+  <ul>
+    <li><strong>One price list per premises</strong> – shop, office, salon or web shop – with the prescribed file name
+      (type, address, label, storage number, date and time) and its own storage numbers.</li>
+    <li><strong>Consumer prices as on a quotation</strong>: the default pricelist of the company (or the sales price) with
+      the taxes of the product. Nothing to set up on the premises.</li>
+    <li><strong>Additional price</strong> (price on 10 September 2026, or at the first publication of a product) saved with
+      its date and never changed by later prices. Administrators can correct it.</li>
+    <li><strong>Special sales</strong> are ordinary pricelist rules (discount, validity period) with the name of the sale:
+      the price list marks them automatically and goes back to the regular price when they end.</li>
+    <li><strong>Always up to date</strong>: a new version a minute after a change and every morning before 08:00
+      (stock, start and end of special sales); a new version only when something changed.</li>
+    <li><strong>Public link and archive</strong> without login (<code>/cjenik</code>), older versions kept public for at
+      least 30 days.</li>
+    <li><strong>Optional webhook</strong> to your own website (JSON, HMAC-SHA256 signature), with the price before a sale
+      and the lowest price in the 30 days before it.</li>
+  </ul>
+
+  <h2 class="mt-5">Premises</h2>
+  <p>Invoicing (Accounting) → Configuration → Public Price List Premises. Product categories are optional: empty publishes all
+    sellable products.</p>
+  <img src="screenshot_premises.png" class="img-fluid border rounded shadow-sm" alt="Premises of the public price list"/>
+
+  <h2 class="mt-5">Special sales: the Odoo way</h2>
+  <p>Add a rule to the default pricelist (Sales → Products → Pricelists): a discount for a product or a category,
+    a validity period and the name of the special sale. The same rule applies on quotations, so the published
+    price is the price on the invoice.</p>
+  <img src="screenshot_pricelist.png" class="img-fluid border rounded shadow-sm" alt="Pricelist rule with a special sale"/>
+
+  <h2 class="mt-5">Products</h2>
+  <p>The brand and the additional prices of each premises, on the product form.</p>
+  <img src="screenshot_product.png" class="img-fluid border rounded shadow-sm" alt="Public price list section of a product"/>
+
+  <h2 class="mt-5">Versions</h2>
+  <p>Every version with its storage number, file and webhook state.</p>
+  <img src="screenshot_versions.png" class="img-fluid border rounded shadow-sm" alt="Published versions"/>
+
+  <h2 class="mt-5">The file</h2>
+  <p>CSV, UTF-8 with BOM, semicolons, decimal comma; the same columns for goods and services:</p>
+  <p><code>sifra; naziv; marka; jedinica_mjere; maloprodajna_cijena_eur; cijena_za_jedinicu_mjere_eur;
+    jedinica_mjere_za_cijenu; posebni_oblik_prodaje; naziv_posebnog_oblika_prodaje; dodatna_cijena_eur;
+    datum_dodatne_cijene; barkod; raspolozivost</code></p>
+
+  <h2 class="mt-5">Stock per premises</h2>
+  <p>With Inventory, the module <strong>Public Price List: Stock per Premises</strong> (<code>l10n_hr_price_list_stock</code>)
+    is installed automatically: with several warehouses, choose the warehouse of each premises for its availability.</p>
+
+  <h2 class="mt-5">Limitations</h2>
+  <ul>
+    <li>One price for all premises (the default pricelist); premises with their own prices are not supported.</li>
+    <li>Promotions of Discount &amp; Loyalty (e.g. 2+1) are conditions on an order, not product prices, and are not
+      shown.</li>
+    <li>The lowest price in the 30 days before a sale is sent on the webhook; showing it next to the sale price is up to
+      you.</li>
+  </ul>
+
+  <hr class="mt-5"/>
+  <p class="text-muted small">
+    By <a href="https://kalamiri.hr">Kalamiri d.o.o.</a> · Support: <a href="mailto:info@kalamiri.com">info@kalamiri.com</a> ·
+    License AGPL-3. Not an official Odoo localization; not affiliated with Odoo S.A.
+  </p>
+</section>

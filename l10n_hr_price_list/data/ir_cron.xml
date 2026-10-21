@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <!-- Changes are published a minute after they are made (triggered). Once a day early in the
+         morning (04:00 UTC: 05:00 or 06:00 in Zagreb, before 08:00) for what changes without an
+         edit: stock (availability). A failed webhook is tried again
+         an hour later. A new version only when something changed. -->
+    <record id="ir_cron_price_list_publish" model="ir.cron">
+        <field name="name">Public price list: publish changes</field>
+        <field name="model_id" ref="model_l10n_hr_price_list_version"/>
+        <field name="state">code</field>
+        <field name="code">model._cron_publish()</field>
+        <field name="user_id" ref="base.user_root"/>
+        <field name="interval_number">1</field>
+        <field name="interval_type">days</field>
+        <field name="nextcall" eval="(DateTime.now() + timedelta(days=1)).strftime('%Y-%m-%d 04:00:00')"/>
+        <field name="active" eval="True"/>
+    </record>
+</odoo>

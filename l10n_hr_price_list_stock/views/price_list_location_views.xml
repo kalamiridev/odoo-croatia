@@ -1,0 +1,14 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="price_list_location_view_form_stock" model="ir.ui.view">
+        <field name="name">l10n_hr.price.list.location.form.stock</field>
+        <field name="model">l10n_hr.price.list.location</field>
+        <field name="inherit_id" ref="l10n_hr_price_list.price_list_location_view_form"/>
+        <field name="arch" type="xml">
+            <field name="category_ids" position="after">
+                <field name="warehouse_id" placeholder="Stock of the company" options="{'no_create': True}"
+                       groups="stock.group_stock_multi_warehouses"/>
+            </field>
+        </field>
+    </record>
+</odoo>

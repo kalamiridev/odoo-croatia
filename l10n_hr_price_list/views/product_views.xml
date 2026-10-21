@@ -1,0 +1,34 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_template_form_view_price_list" model="ir.ui.view">
+        <field name="name">product.template.form.price.list</field>
+        <field name="model">product.template</field>
+        <field name="inherit_id" ref="product.product_template_form_view"/>
+        <field name="arch" type="xml">
+            <group name="internal_notes" position="before">
+                <group name="price_list" string="Public Price List" invisible="not price_list_published">
+                    <field name="price_list_can_edit_anchor" invisible="1"/>
+                    <field name="product_variant_id" invisible="1"/>
+                    <field name="price_list_brand" invisible="type != 'consu'"/>
+                    <field name="price_list_anchor_ids" colspan="2" nolabel="1"
+                           readonly="not price_list_can_edit_anchor"
+                           context="{'default_product_id': product_variant_id}">
+                        <list editable="bottom" no_open="1">
+                            <field name="location_id" options="{'no_create': True}"/>
+                            <field name="product_id" domain="[('product_tmpl_id', '=', parent.id)]"
+                                   column_invisible="parent.product_variant_count &lt;= 1"
+                                   options="{'no_create': True}"/>
+                            <field name="currency_id" column_invisible="1"/>
+                            <field name="price"/>
+                            <field name="date"/>
+                        </list>
+                    </field>
+                    <div class="text-muted" colspan="2" invisible="price_list_anchor_ids">
+                        The additional price is set when the product is first published.
+                    </div>
+                </group>
+            </group>
+        </field>
+    </record>
+
+</odoo>

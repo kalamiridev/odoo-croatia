@@ -1,0 +1,46 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="product_pricelist_item_form_view_price_list" model="ir.ui.view">
+        <field name="name">product.pricelist.item.form.price.list</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_form_view"/>
+        <field name="arch" type="xml">
+            <field name="date_end" position="after">
+                <field name="price_list_special_sale" placeholder="e.g. Autumn sale"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_pricelist_view_price_list" model="ir.ui.view">
+        <field name="name">product.pricelist.form.price.list</field>
+        <field name="model">product.pricelist</field>
+        <field name="inherit_id" ref="product.product_pricelist_view"/>
+        <field name="arch" type="xml">
+            <xpath expr="//field[@name='item_ids']/list/field[@name='date_end']" position="after">
+                <field name="price_list_special_sale" optional="show"/>
+            </xpath>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_tree_view_price_list" model="ir.ui.view">
+        <field name="name">product.pricelist.item.list.price.list</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
+        <field name="arch" type="xml">
+            <field name="date_end" position="after">
+                <field name="price_list_special_sale" optional="show"/>
+            </field>
+        </field>
+    </record>
+
+    <record id="product_pricelist_item_tree_view_from_product_price_list" model="ir.ui.view">
+        <field name="name">product.pricelist.item.list.from.product.price.list</field>
+        <field name="model">product.pricelist.item</field>
+        <field name="inherit_id" ref="product.product_pricelist_item_tree_view_from_product"/>
+        <field name="arch" type="xml">
+            <field name="date_end" position="after">
+                <field name="price_list_special_sale" optional="show"/>
+            </field>
+        </field>
+    </record>
+</odoo>

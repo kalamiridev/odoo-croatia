@@ -1,0 +1,74 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="price_list_location_view_list" model="ir.ui.view">
+        <field name="name">l10n_hr.price.list.location.list</field>
+        <field name="model">l10n_hr.price.list.location</field>
+        <field name="arch" type="xml">
+            <list>
+                <field name="name"/>
+                <field name="category_ids" widget="many2many_tags"/>
+                <field name="url" widget="url"/>
+                <field name="version_count" string="Versions" optional="show"/>
+                <field name="company_id" groups="base.group_multi_company"/>
+            </list>
+        </field>
+    </record>
+
+    <record id="price_list_location_view_form" model="ir.ui.view">
+        <field name="name">l10n_hr.price.list.location.form</field>
+        <field name="model">l10n_hr.price.list.location</field>
+        <field name="arch" type="xml">
+            <form>
+                <header>
+                    <button name="action_publish" type="object" string="Publish price list now"
+                            class="btn-primary" groups="base.group_system" invisible="not id"/>
+                </header>
+                <sheet>
+                    <div class="oe_button_box" name="button_box">
+                        <button name="action_versions" type="object" class="oe_stat_button" icon="fa-files-o"
+                                invisible="not version_count">
+                            <field name="version_count" widget="statinfo" string="Versions"/>
+                        </button>
+                    </div>
+                    <widget name="web_ribbon" title="Archived" bg_color="text-bg-danger" invisible="active"/>
+                    <field name="active" invisible="1"/>
+                    <div class="oe_title">
+                        <h1><field name="name" readonly="1" placeholder="New premises"/></h1>
+                    </div>
+                    <group>
+                        <group>
+                            <field name="object_type" placeholder="e.g. prodavaonica, ured, servis, webshop"/>
+                            <field name="address" placeholder="Empty: company address"/>
+                            <field name="object_code" placeholder="e.g. P-01"/>
+                            <field name="company_id" groups="base.group_multi_company" options="{'no_create': True}"/>
+                        </group>
+                        <group>
+                            <field name="category_ids" widget="many2many_tags" placeholder="All sellable products"
+                                   options="{'no_create': True}"/>
+                            <field name="webhook_url" placeholder="Optional: https://www.example.com/price-list-webhook"
+                                   groups="base.group_system"/>
+                            <field name="webhook_secret" password="True" groups="base.group_system"/>
+                        </group>
+                    </group>
+                    <group>
+                        <field name="url" widget="url"/>
+                    </group>
+                </sheet>
+            </form>
+        </field>
+    </record>
+
+    <record id="action_price_list_location" model="ir.actions.act_window">
+        <field name="name">Public Price List Premises</field>
+        <field name="res_model">l10n_hr.price.list.location</field>
+        <field name="view_mode">list,form</field>
+        <field name="help" type="html">
+            <p class="o_view_nocontent_smiling_face">Add a premises</p>
+            <p>Each premises (shop, office, web shop…) publishes its own price list file with the
+               products of its categories.</p>
+        </field>
+    </record>
+
+    <menuitem id="menu_price_list_location" action="action_price_list_location"
+              parent="account.menu_finance_configuration" sequence="90"/>
+</odoo>

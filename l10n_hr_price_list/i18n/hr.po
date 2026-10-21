@@ -1,0 +1,591 @@
+# Translation of Odoo Server.
+# This file contains the translation of the following modules:
+# 	* l10n_hr_price_list
+#
+msgid ""
+msgstr ""
+"Project-Id-Version: Odoo Server 19.0-20261015\n"
+"Report-Msgid-Bugs-To: \n"
+"POT-Creation-Date: 2026-10-21 09:23+0000\n"
+"PO-Revision-Date: 2026-10-21 09:23+0000\n"
+"Last-Translator: \n"
+"Language-Team: \n"
+"Language: hr\n"
+"MIME-Version: 1.0\n"
+"Content-Type: text/plain; charset=UTF-8\n"
+"Content-Transfer-Encoding: \n"
+"Plural-Forms: nplurals=3; plural=(n%10==1 && n%100!=11 ? 0 : n%10>=2 && n%10<=4 && (n%100<10 || n%100>=20) ? 1 : 2);\n"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_version.py:0
+msgid ""
+"A price list must stay public at least %(days)s days after it was published."
+" Delete only older versions."
+msgstr ""
+"Cjenik mora biti javno dostupan najmanje %(days)s dana od objave. Obrisati "
+"se mogu samo starije verzije."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.constraint,message:l10n_hr_price_list.constraint_l10n_hr_price_list_anchor_location_product_uniq
+msgid "A product has one additional price per premises."
+msgstr "Proizvod ima jednu dodatnu cijenu po objektu."
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+msgid "A published price list must stay public. Archive the premises instead."
+msgstr ""
+"Objavljeni cjenik mora ostati javno dostupan. Umjesto brisanja arhivirajte "
+"objekt."
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.actions.act_window,help:l10n_hr_price_list.action_price_list_version
+msgid "A version is published a minute after a premises is saved."
+msgstr "Verzija se objavi minutu nakon spremanja objekta."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__active
+msgid "Active"
+msgstr "Aktivno"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.actions.act_window,help:l10n_hr_price_list.action_price_list_location
+msgid "Add a premises"
+msgstr "Dodajte objekt"
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_l10n_hr_price_list_anchor
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__price
+msgid "Additional Price"
+msgstr "Dodatna cijena"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__date
+msgid "Additional Price Date"
+msgstr "Datum dodatne cijene"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_product__price_list_anchor_ids
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_template__price_list_anchor_ids
+msgid "Additional Prices"
+msgstr "Dodatne cijene"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_anchor__date
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_anchor__price
+msgid ""
+"Additional price for consumers (with VAT), shown next to the price: the "
+"price on 10 September 2026, or the price when the product was first offered."
+" Set automatically when the product is first published in the price list of "
+"the premises; later price changes do not change it. Only administrators can "
+"correct it."
+msgstr ""
+"Dodatna cijena za potrošače (s PDV-om) koja se ističe uz cijenu: cijena na "
+"dan 10. 9. 2026. ili cijena pri prvom uvrštenju proizvoda u ponudu. Upisuje "
+"se sama pri prvoj objavi proizvoda u cjeniku objekta; kasnije promjene "
+"cijene je ne mijenjaju. Ispraviti je mogu samo administratori."
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__address
+msgid "Address of Premises"
+msgstr "Adresa objekta"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "All sellable products"
+msgstr "Svi prodajni proizvodi"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "Archived"
+msgstr "Arhivirano"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_product__price_list_brand
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_template__price_list_brand
+msgid "Brand"
+msgstr "Marka"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_product_product__price_list_brand
+#: model:ir.model.fields,help:l10n_hr_price_list.field_product_template__price_list_brand
+msgid "Brand of the goods in the public price list."
+msgstr "Marka robe u javnom cjeniku."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__checksum
+msgid "Checksum"
+msgstr "Kontrolni zbroj"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__company_id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__company_id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__company_id
+msgid "Company"
+msgstr "Tvrtka"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__create_uid
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__create_uid
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__create_uid
+msgid "Created by"
+msgstr "Kreirao"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__create_date
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__create_date
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__create_date
+msgid "Created on"
+msgstr "Kreirano"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__currency_id
+msgid "Currency"
+msgstr "Valuta"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__is_current
+msgid "Current"
+msgstr "Trenutni"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__display_name
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__display_name
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__display_name
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_category__display_name
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_pricelist__display_name
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_pricelist_item__display_name
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_product__display_name
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_template__display_name
+msgid "Display Name"
+msgstr "Naziv"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.actions.act_window,help:l10n_hr_price_list.action_price_list_location
+msgid ""
+"Each premises (shop, office, web shop…) publishes its own price list file with the\n"
+"               products of its categories."
+msgstr ""
+"Svaki objekt (prodavaonica, ured, web shop…) objavljuje svoju datoteku "
+"cjenika s proizvodima svojih kategorija."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.constraint,message:l10n_hr_price_list.constraint_l10n_hr_price_list_location_company_code_uniq
+msgid "Each premises needs its own label."
+msgstr "Svaki objekt mora imati svoju oznaku."
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "Empty: company address"
+msgstr "Prazno: adresa tvrtke"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields.selection,name:l10n_hr_price_list.selection__l10n_hr_price_list_version__webhook_state__error
+msgid "Error"
+msgstr "Greška"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/controllers/main.py:0
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__file
+msgid "File"
+msgstr "Datoteka"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__name
+msgid "File Name"
+msgstr "Naziv datoteke"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_location__object_type
+msgid ""
+"First part of the file name, e.g. prodavaonica, ured, servis, salon or "
+"webshop."
+msgstr ""
+"Prvi dio naziva datoteke, npr. prodavaonica, ured, servis, salon ili "
+"webshop."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_category__id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_pricelist__id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_pricelist_item__id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_product__id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_template__id
+msgid "ID"
+msgstr "ID"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_product__price_list_published
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_template__price_list_published
+msgid "In Public Price List"
+msgstr "U javnom cjeniku"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__write_uid
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__write_uid
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__write_uid
+msgid "Last Updated by"
+msgstr "Zadnji ažurirao"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__write_date
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__write_date
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__write_date
+msgid "Last Updated on"
+msgstr "Zadnje ažurirano"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__line_count
+msgid "Lines"
+msgstr "Broj stavki"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.res_config_settings_view_form_price_list
+msgid "Manage premises"
+msgstr "Uredi objekte"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__name
+msgid "Name"
+msgstr "Naziv"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_product_pricelist_item__price_list_special_sale
+msgid ""
+"Name of the special sale (e.g. Autumn sale) when this rule is a sale or "
+"discount: the public price list then marks its price as a special sale "
+"price. Empty: a regular price."
+msgstr ""
+"Naziv posebnog oblika prodaje (npr. Jesensko sniženje) kad je ovo pravilo "
+"akcija ili popust: javni cjenik tada njegovu cijenu označava kao cijenu u "
+"posebnom obliku prodaje. Prazno: redovna cijena."
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "New premises"
+msgstr "Novi objekt"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+msgid "New price list published: %(name)s"
+msgstr "Objavljen novi cjenik: %(name)s"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+msgid "No changes: the current price list is %(name)s"
+msgstr "Nema promjena: trenutni cjenik je %(name)s"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.actions.act_window,help:l10n_hr_price_list.action_price_list_version
+msgid "No price list published yet"
+msgstr "Još nije objavljen nijedan cjenik"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+msgid "Not sent to the webhook: %(error)s. Odoo tries again in an hour."
+msgstr ""
+"Nije poslano na webhook: %(error)s. Odoo pokušava ponovno za sat vremena."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields.selection,name:l10n_hr_price_list.selection__l10n_hr_price_list_version__webhook_state__none
+msgid "Not used"
+msgstr "Ne koristi se"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+msgid "Only administrators can publish the price list."
+msgstr "Cjenik mogu objaviti samo administratori."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_location__category_ids
+msgid ""
+"Optional. Active sellable products of these categories and their "
+"subcategories are published. Empty: all active sellable products."
+msgstr ""
+"Neobavezno. Objavljuju se aktivni prodajni proizvodi ovih kategorija i "
+"njihovih podkategorija. Prazno: svi aktivni prodajni proizvodi."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_location__webhook_secret
+msgid ""
+"Optional. Each request is signed with it: header X-Price-List-Signature: "
+"sha256=<HMAC of the body>."
+msgstr ""
+"Neobavezno. Njime se potpisuje svaki zahtjev: zaglavlje X-Price-List-"
+"Signature: sha256=<HMAC tijela zahtjeva>."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_location__webhook_url
+msgid ""
+"Optional. Every new version of this price list is sent here (POST, JSON), "
+"e.g. to publish it on your own website."
+msgstr ""
+"Neobavezno. Svaka nova verzija ovog cjenika šalje se ovamo (POST, JSON), "
+"npr. za objavu na vašoj mrežnoj stranici."
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "Optional: https://www.example.com/price-list-webhook"
+msgstr "Neobavezno: https://www.example.com/price-list-webhook"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/controllers/main.py:0
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__location_id
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__location_id
+msgid "Premises"
+msgstr "Objekt"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__object_code
+msgid "Premises Label"
+msgstr "Oznaka objekta"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/controllers/main.py:0
+msgid "Previous price lists"
+msgstr "Prethodni cjenici"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_product__price_list_can_edit_anchor
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_template__price_list_can_edit_anchor
+msgid "Price List Can Edit Anchor"
+msgstr "Smije mijenjati dodatnu cijenu"
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_l10n_hr_price_list_location
+msgid "Price List Premises"
+msgstr "Objekt cjenika"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/controllers/main.py:0
+msgid "Price list"
+msgstr "Cjenik"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/controllers/main.py:0
+msgid "Price list archive"
+msgstr "Arhiva cjenika"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.res_config_settings_view_form_price_list
+msgid ""
+"Price list for consumers with the additional price, in a CSV file on a "
+"public link without login (NN 101/26). Each premises (shop, office, web "
+"shop…) publishes its own file: categories, webhook and versions."
+msgstr ""
+"Cjenik za potrošače s dodatnom cijenom, u CSV datoteci na javnoj poveznici "
+"bez prijave (NN 101/26). Svaki objekt (prodavaonica, ured, web shop…) "
+"objavljuje svoju datoteku: kategorije, webhook i verzije."
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_product_pricelist
+msgid "Pricelist"
+msgstr "Cjenik"
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_product_pricelist_item
+msgid "Pricelist Rule"
+msgstr "Pravilo cjenika"
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_product_template
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__product_id
+msgid "Product"
+msgstr "Proizvod"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__category_ids
+msgid "Product Categories"
+msgstr "Kategorije proizvoda"
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_product_category
+msgid "Product Category"
+msgstr "Kategorija proizvoda"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__product_tmpl_id
+msgid "Product Template"
+msgstr "Predložak proizvoda"
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_product_product
+msgid "Product Variant"
+msgstr "Varijanta proizvoda"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__url
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__url
+msgid "Public Link"
+msgstr "Javna poveznica"
+
+#. module: l10n_hr_price_list
+#: model:ir.actions.act_window,name:l10n_hr_price_list.action_price_list_version
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.product_template_form_view_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.res_config_settings_view_form_price_list
+msgid "Public Price List"
+msgstr "Javni cjenik"
+
+#. module: l10n_hr_price_list
+#: model:ir.actions.act_window,name:l10n_hr_price_list.action_price_list_location
+#: model:ir.ui.menu,name:l10n_hr_price_list.menu_price_list_location
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.res_config_settings_view_form_price_list
+msgid "Public Price List Premises"
+msgstr "Objekti javnog cjenika"
+
+#. module: l10n_hr_price_list
+#: model:ir.model,name:l10n_hr_price_list.model_l10n_hr_price_list_version
+msgid "Public Price List Version"
+msgstr "Verzija javnog cjenika"
+
+#. module: l10n_hr_price_list
+#: model:ir.actions.server,name:l10n_hr_price_list.ir_cron_price_list_publish_ir_actions_server
+msgid "Public price list: publish changes"
+msgstr "Javni cjenik: objava promjena"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "Publish price list now"
+msgstr "Objavi cjenik sada"
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/controllers/main.py:0
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__published_at
+msgid "Published"
+msgstr "Objavljeno"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__rows_json
+msgid "Rows (JSON)"
+msgstr "Retci (JSON)"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_location__address
+msgid ""
+"Second part of the file name, e.g. Ilica 150 Zagreb. Empty: street and city "
+"of the company."
+msgstr ""
+"Drugi dio naziva datoteke, npr. Ilica 150 Zagreb. Prazno: ulica i mjesto "
+"tvrtke."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields.selection,name:l10n_hr_price_list.selection__l10n_hr_price_list_version__webhook_state__sent
+msgid "Sent"
+msgstr "Poslano"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__webhook_sent_at
+msgid "Sent to Webhook"
+msgstr "Poslano na webhook"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_product_pricelist_item__price_list_special_sale
+msgid "Special Sale"
+msgstr "Posebni oblik prodaje"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__number
+msgid "Storage Number"
+msgstr "Broj pohrane"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.product_template_form_view_price_list
+msgid "The additional price is set when the product is first published."
+msgstr "Dodatna cijena upisuje se pri prvoj objavi proizvoda."
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+msgid "The public price list %(premises)s needs: %(fields)s."
+msgstr "Za javni cjenik %(premises)s nedostaje: %(fields)s."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.constraint,message:l10n_hr_price_list.constraint_l10n_hr_price_list_version_location_number_uniq
+msgid "The storage number of a price list must be unique per premises."
+msgstr "Broj pohrane cjenika mora biti jedinstven unutar objekta."
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,help:l10n_hr_price_list.field_l10n_hr_price_list_location__object_code
+msgid ""
+"Third part of the file name: your label of the premises (e.g. P-01, U-03), "
+"or 01 if you have none. Also the public link of its price list: "
+"/cjenik/<label>."
+msgstr ""
+"Treći dio naziva datoteke: vaša oznaka objekta (npr. P-01, U-03) ili 01 ako "
+"je nemate. Ujedno i javna poveznica njegova cjenika: /cjenik/<oznaka>."
+
+#. module: l10n_hr_price_list
+#. odoo-python
+#: code:addons/l10n_hr_price_list/models/price_list_location.py:0
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__object_type
+msgid "Type of Premises"
+msgstr "Oblik objekta"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__version_count
+msgid "Version Count"
+msgstr "Broj verzija"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__version_ids
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_list
+msgid "Versions"
+msgstr "Verzije"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields.selection,name:l10n_hr_price_list.selection__l10n_hr_price_list_version__webhook_state__pending
+msgid "Waiting"
+msgstr "Čeka"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__webhook_state
+msgid "Webhook"
+msgstr "Webhook"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__webhook_error
+msgid "Webhook Error"
+msgstr "Greška webhooka"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__webhook_secret
+msgid "Webhook Secret"
+msgstr "Tajni ključ webhooka"
+
+#. module: l10n_hr_price_list
+#: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__webhook_url
+msgid "Webhook URL"
+msgstr "Adresa webhooka"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.product_pricelist_item_form_view_price_list
+msgid "e.g. Autumn sale"
+msgstr "npr. Jesensko sniženje"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "e.g. P-01"
+msgstr "npr. P-01"
+
+#. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.price_list_location_view_form
+msgid "e.g. prodavaonica, ured, servis, webshop"
+msgstr "npr. prodavaonica, ured, servis, webshop"

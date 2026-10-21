@@ -1,0 +1,18 @@
+<?xml version="1.0" encoding="utf-8"?>
+<odoo>
+    <record id="rule_price_list_location_company" model="ir.rule">
+        <field name="name">Public price list premises: own companies</field>
+        <field name="model_id" ref="model_l10n_hr_price_list_location"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_price_list_anchor_company" model="ir.rule">
+        <field name="name">Additional prices: own companies</field>
+        <field name="model_id" ref="model_l10n_hr_price_list_anchor"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+    <record id="rule_price_list_version_company" model="ir.rule">
+        <field name="name">Public price list versions: own companies</field>
+        <field name="model_id" ref="model_l10n_hr_price_list_version"/>
+        <field name="domain_force">[('company_id', 'in', company_ids)]</field>
+    </record>
+</odoo>
