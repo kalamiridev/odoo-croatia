@@ -50,11 +50,13 @@ nekoliko verzija; to je u redu.
 Cijena u cjeniku je cijena s PDV-om kakvu Odoo stavlja na ponudu i račun građaninu:
 
 - **Prodajna cijena** proizvoda s njegovim *Prodajnim porezima*, ili
-- ako su uključeni **Cjenici** (*Prodaja → Konfiguracija → Postavke → Cjenici*): cijena iz **zadanog cjenika**
-  (prvi na popisu *Prodaja → Proizvodi → Cjenici*), tj. cjenika kupca bez vlastitog cjenika.
+- ako su uključeni **Cjenici** (*Prodaja → Konfiguracija → Postavke → Cjenici*): cijena iz **zadanog cjenika**,
+  tj. cjenika koji Odoo daje kupcu iz Hrvatske bez vlastitog cjenika. To je obično prvi na popisu
+  *Prodaja → Proizvodi → Cjenici*; ako je neki cjenik ograničen na grupu država u kojoj je Hrvatska, prednost
+  ima on.
 
 Na objektu se cijene ne postavljaju. Okrugla cijena s PDV-om: prodajnu cijenu upišite tako da s PDV-om bude
-okrugla (npr. 255,20 € + 25 % = 319,00 €) ili koristite porez uključen u cijenu.
+okrugla (npr. 39,92 € + 25 % = 49,90 €) ili koristite porez uključen u cijenu.
 
 ## Svakodnevni rad
 
@@ -75,35 +77,37 @@ Akcija se radi kao inače u Odoo-u, **pravilom cjenika**: prodajna cijena proizv
 daje popust u zadanom razdoblju. Isto pravilo vrijedi na ponudama i računima, pa je cijena svugdje ista.
 Treba aplikacija **Prodaja** s uključenim **Cjenicima**.
 
-1. *Prodaja → Proizvodi → Cjenici* → **zadani cjenik** (prvi na popisu) → kartica **Prodajne cijene** →
-   **Dodaj stavku** (ili na proizvodu, kartica **Cijene**).
+1. *Prodaja → Proizvodi → Cjenici* → **zadani cjenik** (obično prvi na popisu, vidi *Odakle su cijene*) →
+   kartica **Prodajne cijene** → **Dodaj stavku** (ili na proizvodu, kartica **Cijene**).
 2. U pravilu: **Primijeni na** (proizvod, kategorija ili sve), **Vrsta cijene** *Popust* i postotak (ili
    fiksna cijena), **Razdoblje važenja** (od 00:00 do 23:59) i **Posebni oblik prodaje** – naziv akcije, npr.
    `Jesensko sniženje`.
 3. Spremite. Cjenik prikazuje akcijsku cijenu i naziv od početka akcije, a ujutro nakon kraja opet redovnu
    cijenu.
 
-**Primjer:** senzor ima *Prodajnu cijenu* 19,00 € (bez PDV-a, uz porez 25 %). U zadani cjenik dodate pravilo:
+**Primjer:** stolna svjetiljka ima *Prodajnu cijenu* 40,00 € (bez PDV-a, uz porez 25 %), kao i 10. 9. 2026.
+U zadani cjenik dodate pravilo:
 
 | Polje | Vrijednost |
 |---|---|
-| Primijeni na | Proizvod: *Senzor vrata/prozora* |
+| Primijeni na | Proizvod: *Stolna svjetiljka* |
 | Vrsta cijene | Popust, `20` % |
-| Razdoblje važenja | 1. 11. 2026. 00:00 – 30. 11. 2026. 23:59 |
-| Posebni oblik prodaje | `Jesensko sniženje` |
+| Razdoblje važenja | 1. 12. 2026. 00:00 – 31. 12. 2026. 23:59 |
+| Posebni oblik prodaje | `Zimsko sniženje` |
 
-Od 1. 11. ujutro redak senzora u cjeniku glasi:
+Od 1. 12. ujutro redak svjetiljke u cjeniku glasi:
 
 | Stupac | Prije akcije | Za vrijeme akcije |
 |---|---|---|
-| `maloprodajna_cijena_eur` | 23,75 | **19,00** (15,20 € + PDV) |
+| `maloprodajna_cijena_eur` | 50,00 | **40,00** (32,00 € + PDV) |
 | `posebni_oblik_prodaje` | ne | **da** |
-| `naziv_posebnog_oblika_prodaje` | | **Jesensko sniženje** |
-| `dodatna_cijena_eur`, `datum_dodatne_cijene` | 26,25 · 19.10.2026 | 26,25 · 19.10.2026 (ne mijenja se) |
+| `naziv_posebnog_oblika_prodaje` | | **Zimsko sniženje** |
+| `dodatna_cijena_eur`, `datum_dodatne_cijene` | 50,00 · 10.09.2026 | 50,00 · 10.09.2026 (ne mijenja se) |
 
-Ponuda građaninu u studenom ima istu cijenu (15,20 € + PDV), a 1. 12. ujutro cjenik je opet na 23,75.
+Ponuda građaninu u prosincu ima istu cijenu (32,00 € + PDV), a 1. 1. 2027. ujutro cjenik je opet na 50,00.
 
-- Pravilo **bez** naziva akcije je redovna cijena za potrošače, a ne akcija.
+- Pravilo **bez** naziva akcije je redovna cijena za potrošače, a ne akcija. Redovna cijena je cijena iz
+  zadanog cjenika bez pravila s nazivom akcije (bez Cjenika: *Prodajna cijena*).
 - **Mnogo artikala:** jedno pravilo za njihovu kategoriju; ako nisu u jednoj kategoriji, pravila uvezite iz
   tablice: popis cjenika → označite zadani cjenik → **⚙ Radnje → Izvoz** s poljima *ID* i iz *Pravila
   cjenika*: *Primijeni na*, *Proizvod*, *Izračunaj cijenu*, *Postotak cijena*, *Datum početka*, *Datum
@@ -117,7 +121,7 @@ Ponuda građaninu u studenom ima istu cijenu (15,20 € + PDV), a 1. 12. ujutro 
 ## Dodatne cijene
 
 - Pri **prvoj objavi** proizvod dobije dodatnu cijenu: svoju trenutnu cijenu s **današnjim** datumom
-  (za vrijeme akcije redovnu cijenu). To je ispravno za proizvode uvedene nakon 10. 9. 2026.
+  (za vrijeme akcije redovnu cijenu, vidi *Akcije*). To je ispravno za proizvode uvedene nakon 10. 9. 2026.
 - Za proizvode i usluge koje ste **nudili 10. 9. 2026.** administrator na proizvodu (odjeljak **Javni
   cjenik**, popis dodatnih cijena) upiše cijenu s PDV-om toga dana i datum **10. 9. 2026.** Ako je tada bila
   akcija, upiše redovnu cijenu.
@@ -228,35 +232,35 @@ i usluge i za sve objekte. Naziv: `oblik objekta_adresa_oznaka_broj pohrane_datu
 ```
 
 - `content_base64` je propisana datoteka (objavite je takvu kakva jest). `rows` su njezini retci za prikaz na
-  webu, uz `prodajna_cijena_bez_pdv_eur` (prodajna cijena bez PDV-a, npr. za tvrtke), a za vrijeme akcije i
+  webu, uz `prodajna_cijena_bez_pdv_eur` (redovna cijena bez PDV-a, npr. za tvrtke), a za vrijeme akcije i
   `cijena_prije_posebnog_oblika_prodaje_eur` i `najniza_cijena_30_dana_eur`.
 
 Redak u `rows` za vrijeme akcije (primjer iz poglavlja *Akcije*):
 
 ```json
 {
-  "sifra": "SL-S-DOOR",
-  "naziv": "Senzor vrata/prozora",
-  "marka": "Aqara / Shelly",
-  "jedinica_mjere": "kom",
-  "maloprodajna_cijena_eur": "19,00",
+  "sifra": "ART-1",
+  "naziv": "Stolna svjetiljka",
+  "marka": "Primjer",
+  "jedinica_mjere": "Jedinice",
+  "maloprodajna_cijena_eur": "40,00",
   "cijena_za_jedinicu_mjere_eur": "",
   "jedinica_mjere_za_cijenu": "",
   "posebni_oblik_prodaje": "da",
-  "naziv_posebnog_oblika_prodaje": "Jesensko sniženje",
-  "dodatna_cijena_eur": "26,25",
-  "datum_dodatne_cijene": "19.10.2026",
+  "naziv_posebnog_oblika_prodaje": "Zimsko sniženje",
+  "dodatna_cijena_eur": "50,00",
+  "datum_dodatne_cijene": "10.09.2026",
   "barkod": "",
   "raspolozivost": "dostupno",
-  "prodajna_cijena_bez_pdv_eur": "19,00",
-  "cijena_prije_posebnog_oblika_prodaje_eur": "23,75",
-  "najniza_cijena_30_dana_eur": "23,75"
+  "prodajna_cijena_bez_pdv_eur": "40,00",
+  "cijena_prije_posebnog_oblika_prodaje_eur": "50,00",
+  "najniza_cijena_30_dana_eur": "50,00"
 }
 ```
 
-Na webu uz akcijsku cijenu (19,00 €) prikažite najnižu cijenu u 30 dana prije akcije (23,75 €), npr.
-„Jesensko sniženje: 19,00 € · najniža cijena u 30 dana prije akcije: 23,75 € · cijena na 19.10.2026.: 26,25 €“.
-`prodajna_cijena_bez_pdv_eur` je redovna prodajna cijena bez PDV-a, bez akcije.
+Na webu uz akcijsku cijenu (40,00 €) prikažite najnižu cijenu u 30 dana prije akcije (50,00 €), npr.
+„Zimsko sniženje: 40,00 € · najniža cijena u 30 dana prije akcije: 50,00 € · cijena na 10.9.2026.: 50,00 €“.
+`prodajna_cijena_bez_pdv_eur` je redovna cijena bez PDV-a (bez akcije).
 - Uz tajni ključ zaglavlje `X-Price-List-Signature: sha256=<HMAC-SHA256 tijela>`; web ga mora provjeriti.
 - Odgovor 2xx = primljeno (*Webhook: Poslano*); preusmjeravanja se ne slijede. Kod greške Odoo pokušava ponovno
   za sat vremena. Kad se webhook upiše naknadno, šalje se trenutna verzija. Web mora sam čuvati i objaviti
@@ -271,13 +275,16 @@ Na webu uz akcijsku cijenu (19,00 €) prikažite najnižu cijenu u 30 dana prij
   kao privitak, `checksum`, `rows_json`, stanje webhooka), `l10n_hr.price.list.anchor` (dodatna cijena po objektu
   i varijanti; mijenja je samo `base.group_system`). Predložak proizvoda: `price_list_brand`,
   `price_list_anchor_ids`. Pravilo cjenika: `price_list_special_sale`.
-- Cijena: `_consumer_pricelist()` (kao `_get_partner_pricelist_multi` za kupca iz države tvrtke; ništa kad su
-  Cjenici isključeni) i `_compute_price_rule`; pravilo s nazivom = `da`. Cijena prije akcije i najniža cijena
+- Cijena: `_default_pricelist()` (`_get_country_pricelist_multi` za državu tvrtke; ništa kad su Cjenici
+  isključeni) i `_compute_price_rule`; pravilo s nazivom = `da`. Redovna cijena (dodatna cijena proizvoda
+  objavljenog prvi put za vrijeme akcije, `prodajna_cijena_bez_pdv_eur`) = isti cjenik bez pravila s nazivom
+  (kontekst `l10n_hr_price_list_regular_price` u `_get_applicable_rules`). Cijena prije akcije i najniža cijena
   (`_special_sale_prices`) iz `rows_json` verzija (retci spremaju `_product_id`, koji se ne objavljuje i nije u
   `checksum`; starije verzije po šifri).
-- Objava (`_publish`): nova verzija kad se promijeni SHA-256 redaka (uključujući prodajnu cijenu bez PDV-a) ili
+- Objava (`_publish`): nova verzija kad se promijeni SHA-256 redaka (uključujući redovnu cijenu bez PDV-a) ili
   naziva, a prvi put svaki dan i bez promjena. Cron *Javni cjenik: objava promjena* svaki dan u 04:00 UTC;
   promjene proizvoda, kategorija, objekata, dodatnih cijena, cjenika i pravila zakažu ga za minutu (jednom po
   transakciji), neuspjeli webhook za sat vremena. Verzije se spremaju prije slanja webhooka.
-- Proširenja na objektu: `_row(product, price, anchor, special_sale)`, `_prices`, `_availability`, `_products`.
+- Proširenja na objektu: `_row(product, price, anchor, special_sale)`, `_default_pricelist`, `_prices`,
+  `_availability`, `_products`.
 - Testovi: `--test-tags /l10n_hr_price_list`.

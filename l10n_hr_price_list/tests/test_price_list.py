@@ -176,7 +176,7 @@ class TestPriceList(PriceListCommon):
     def _pricelist(self):
         """The pricelist of a customer without one of their own, with Pricelists turned on (Sales settings)."""
         self.env["res.config.settings"].create({"group_product_pricelist": True}).execute()
-        pricelist = self.location._consumer_pricelist()
+        pricelist = self.location._default_pricelist()
         self.assertTrue(pricelist, "Turning Pricelists on gives the company a pricelist")
         return pricelist
 
@@ -200,9 +200,10 @@ class TestPriceList(PriceListCommon):
             self.goods.list_price = price  # tax included: the consumer price
             return self.location._publish()
 
-    def test_consumer_pricelist(self):
+    def test_default_pricelist(self):
         """Prices as on a quotation for a customer without a pricelist of their own; a rule without the
-        name of a special sale is a regular price (also for the additional price)."""
+        name of a special sale is a regular price (also for the additional price and the price without
+        taxes)."""
         pricelist = self._pricelist()
         pricelist.item_ids = [Command.create({
             "applied_on": "0_product_variant", "product_id": self.service.id,
@@ -212,7 +213,7 @@ class TestPriceList(PriceListCommon):
         service = self._lines(version)["SRV-1"]
         self.assertEqual(service["maloprodajna_cijena_eur"], "100,00", "Rule price with taxes")
         self.assertEqual((service["posebni_oblik_prodaje"], service["dodatna_cijena_eur"]), ("ne", "100,00"))
-        self.assertEqual(self._rows(version)["SRV-1"]["prodajna_cijena_bez_pdv_eur"], "100,00", "Sales price")
+        self.assertEqual(self._rows(version)["SRV-1"]["prodajna_cijena_bez_pdv_eur"], "80,00", "Regular price")
         self.assertEqual(self._lines(version)["GDS-1"]["maloprodajna_cijena_eur"], "125,00", "No rule")
         pricelist.action_archive()  # as when Pricelists are turned off
         self.assertEqual(self._lines(self.location._publish())["SRV-1"]["maloprodajna_cijena_eur"], "125,00")
@@ -274,6 +275,21 @@ class TestPriceList(PriceListCommon):
         row = self._rows(version)["GDS-1"]
         self.assertEqual((row["cijena_prije_posebnog_oblika_prodaje_eur"], row["najniza_cijena_30_dana_eur"]), ("0,00", "0,00"))
 
+    def test_new_product_on_special_sale_regular_rule(self):
+        """During a special sale the regular price is the price of the default pricelist without the rules
+        of special sales: a rule without a name counts, the sales price only when there is none."""
+        pricelist = self._pricelist()
+        pricelist.item_ids = [Command.create({
+            "applied_on": "0_product_variant", "product_id": self.goods.id,
+            "compute_price": "fixed", "fixed_price": 90.0,
+        })]
+        self._sale(pricelist)  # newer, so it applies first
+        version = self.location._publish()
+        goods = self._lines(version)["GDS-1"]
+        self.assertEqual((goods["maloprodajna_cijena_eur"], goods["posebni_oblik_prodaje"]), ("100,00", "da"))
+        self.assertEqual(goods["dodatna_cijena_eur"], "90,00", "The regular price of the pricelist")
+        self.assertEqual(self._rows(version)["GDS-1"]["prodajna_cijena_bez_pdv_eur"], "72,00", "Tax included: 90,00")
+
     def test_special_sale_two_premises(self):
         pricelist = self._pricelist()
         webshop = self.env["l10n_hr.price.list.location"].create({
@@ -291,6 +307,13 @@ class TestPriceList(PriceListCommon):
         triggers = self.env["ir.cron.trigger"].search([("cron_id", "=", cron.id)])
         self.env.cr.precommit.data.pop("l10n_hr_price_list.triggered", None)  # a new transaction
         self._sale(pricelist)
+        self.assertTrue(self.env["ir.cron.trigger"].search([("cron_id", "=", cron.id)]) - triggers)
+        other = self.env["product.pricelist"].create({"name": "Other", "item_ids": [Command.create({
+            "applied_on": "3_global", "compute_price": "percentage", "percent_price": 10.0,
+        })]})
+        triggers = self.env["ir.cron.trigger"].search([("cron_id", "=", cron.id)])
+        self.env.cr.precommit.data.pop("l10n_hr_price_list.triggered", None)  # a new transaction
+        other.unlink()  # its rules are deleted by the database
         self.assertTrue(self.env["ir.cron.trigger"].search([("cron_id", "=", cron.id)]) - triggers)
 
     def test_archived_and_not_sellable_left_out(self):

@@ -9,7 +9,7 @@
                 <block title="Public Price List" id="l10n_hr_price_list">
                     <setting id="price_list_locations" string="Public Price List Premises"
                              company_dependent="1"
-                             help="Price list for consumers with the additional price, in a CSV file on a public link without login (NN 101/26). Each premises (shop, office, web shop…) publishes its own file: categories, webhook and versions.">
+                             help="Consumer price list with the additional price (CSV, NN 101/26), per premises.">
                         <div class="mt8">
                             <button name="%(action_price_list_location)d" type="action" string="Manage premises"
                                     icon="oi-arrow-right" class="btn-link"/>

@@ -28,7 +28,7 @@
         <field name="inherit_id" ref="product.product_pricelist_item_tree_view"/>
         <field name="arch" type="xml">
             <field name="date_end" position="after">
-                <field name="price_list_special_sale" optional="show"/>
+                <field name="price_list_special_sale" optional="hide"/>
             </field>
         </field>
     </record>
@@ -39,7 +39,7 @@
         <field name="inherit_id" ref="product.product_pricelist_item_tree_view_from_product"/>
         <field name="arch" type="xml">
             <field name="date_end" position="after">
-                <field name="price_list_special_sale" optional="show"/>
+                <field name="price_list_special_sale" optional="hide"/>
             </field>
         </field>
     </record>

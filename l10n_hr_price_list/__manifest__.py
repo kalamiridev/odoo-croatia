@@ -1,6 +1,6 @@
 {
     "name": "Croatia - Public Price List for Consumers",
-    "version": "19.0.2.9.7",
+    "version": "19.0.2.9.9",
     "category": "Accounting/Localizations",
     "summary": "Machine-readable price list (CSV) with the additional (anchor) price, as required by NN 101/26",
     "description": """

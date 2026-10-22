@@ -23,9 +23,9 @@ LOWEST_PRICE_DAYS = 30
 
 
 class Price(NamedTuple):
-    consumer: float  # with taxes: from the consumer pricelist or the sales price
-    regular: float  # sales price with taxes
-    net: float  # sales price without taxes
+    consumer: float  # with taxes: from the default pricelist or the sales price, as on a quotation
+    regular: float  # with taxes: the same without the rules of special sales
+    net: float  # the regular price without taxes
     special_sale: str  # name of the special sale of the pricelist rule, or ""
 
 _logger = logging.getLogger(__name__)
@@ -180,7 +180,7 @@ class L10nHrPriceListLocation(models.Model):
             ("company_id", "in", [False, self.company_id.id]),
         ], order="default_code, name, id")
 
-    def _consumer_pricelist(self):
+    def _default_pricelist(self):
         """The pricelist Odoo gives a customer from the country of the company without a pricelist of
         their own (as on a quotation); none when Pricelists are turned off."""
         self.ensure_one()
@@ -192,32 +192,47 @@ class L10nHrPriceListLocation(models.Model):
             return Pricelist._get_country_pricelist_multi([country.id])[country.id]
         return Pricelist.search(Pricelist._get_partner_pricelist_multi_search_domain_hook(self.company_id.id), limit=1)
 
+    @api.model
+    def _pricelist_prices(self, pricelist, products, currency):
+        """{product id: (price without the taxes, rule id or False)}: the price of the rule of the
+        pricelist for the product, or its sales price (no rule or no pricelist)."""
+        rules = pricelist._compute_price_rule(products, 1.0, currency=currency) if pricelist and products else {}
+        result = {}
+        for product in products:
+            price, rule = rules.get(product.id, (0.0, False))
+            result[product.id] = (price, rule) if rule else (product.lst_price, False)
+        return result
+
     def _prices(self, products):
         """{product id: Price}.
 
-        The price for a consumer is the price of the consumer pricelist (its rule for the product, e.g. a
+        The price for a consumer is the price of the default pricelist (its rule for the product, e.g. a
         discount for a period) or the sales price, with the taxes of the product, as on an invoice without
-        a fiscal position. A rule with the name of a special sale makes it a special sale price; the regular
-        price is the sales price with taxes. The sales price without taxes is sent on the webhook (e.g. for
-        showing prices to companies on the website)."""
+        a fiscal position. A rule with the name of a special sale makes it a special sale price. The regular
+        price is the price of the same pricelist without the rules of special sales (rules without a name
+        are regular prices). The regular price without taxes is sent on the webhook (e.g. for showing
+        prices to companies on the website)."""
         self.ensure_one()
         company = self.company_id
         currency = company.currency_id
-        pricelist = self._consumer_pricelist()
-        rules = pricelist._compute_price_rule(products, 1.0, currency=currency) if pricelist else {}
+        pricelist = self._default_pricelist()
+        prices = self._pricelist_prices(pricelist, products, currency)
         names = {rule.id: (rule.price_list_special_sale or "").strip()
-                 for rule in self.env["product.pricelist.item"].sudo().browse([rule for __, rule in rules.values() if rule])}
+                 for rule in self.env["product.pricelist.item"].sudo().browse({rule for __, rule in prices.values() if rule})}
+        on_sale = products.filtered(lambda product: names.get(prices[product.id][1]))
+        regular_prices = self._pricelist_prices(
+            pricelist.with_context(l10n_hr_price_list_regular_price=True), on_sale, currency,
+        )
         result = {}
         for product in products:
             taxes = product.taxes_id._filter_taxes_by_company(company)
-            regular = taxes.compute_all(product.lst_price, currency=currency, quantity=1.0, product=product)
-            price, rule = rules.get(product.id, (0.0, False))
-            if rule:
-                price = taxes.compute_all(price, currency=currency, quantity=1.0, product=product)["total_included"]
-            else:
-                price = regular["total_included"]
+            price, rule = prices[product.id]
+            consumer = taxes.compute_all(price, currency=currency, quantity=1.0, product=product)
+            regular = consumer
+            if product.id in regular_prices:
+                regular = taxes.compute_all(regular_prices[product.id][0], currency=currency, quantity=1.0, product=product)
             result[product.id] = Price(
-                consumer=currency.round(price),
+                consumer=currency.round(consumer["total_included"]),
                 regular=currency.round(regular["total_included"]),
                 net=currency.round(regular["total_excluded"]),
                 special_sale=names.get(rule, ""),
@@ -274,8 +289,7 @@ class L10nHrPriceListLocation(models.Model):
         anchors = {anchor.product_id.id: anchor for anchor in Anchor.search([("location_id", "=", self.id)])}
         today = local_now().date()
         new = Anchor.create([
-            {"location_id": self.id, "product_id": product.id, "date": today,
-             "price": prices[product.id].regular if prices[product.id].special_sale else prices[product.id].consumer}
+            {"location_id": self.id, "product_id": product.id, "date": today, "price": prices[product.id].regular}
             for product in products if product.id not in anchors
         ])
         anchors.update({anchor.product_id.id: anchor for anchor in new})

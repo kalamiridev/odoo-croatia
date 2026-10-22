@@ -23,9 +23,6 @@
                             <field name="date"/>
                         </list>
                     </field>
-                    <div class="text-muted" colspan="2" invisible="price_list_anchor_ids">
-                        The additional price is set when the product is first published.
-                    </div>
                 </group>
             </group>
         </field>

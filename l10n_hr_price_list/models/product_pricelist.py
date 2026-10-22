@@ -15,6 +15,18 @@ class ProductPricelist(models.Model):
         self.env["l10n_hr.price.list.version"]._trigger_publish()
         return result
 
+    def unlink(self):
+        result = super().unlink()  # the database deletes its rules, without their unlink
+        self.env["l10n_hr.price.list.version"]._trigger_publish()
+        return result
+
+    def _get_applicable_rules(self, products, date, **kwargs):
+        rules = super()._get_applicable_rules(products, date, **kwargs)
+        if self.env.context.get("l10n_hr_price_list_regular_price"):
+            # The regular price of the public price list: without the rules of special sales.
+            rules = rules.filtered(lambda rule: not (rule.price_list_special_sale or "").strip())
+        return rules
+
 
 class ProductPricelistItem(models.Model):
     _inherit = "product.pricelist.item"

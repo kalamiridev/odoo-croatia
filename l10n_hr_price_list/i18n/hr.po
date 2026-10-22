@@ -128,6 +128,15 @@ msgid "Company"
 msgstr "Tvrtka"
 
 #. module: l10n_hr_price_list
+#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.res_config_settings_view_form_price_list
+msgid ""
+"Consumer price list with the additional price (CSV, NN 101/26), per "
+"premises."
+msgstr ""
+"Cjenik za potrošače s dodatnom cijenom (CSV, NN 101/26), za svaki "
+"objekt."
+
+#. module: l10n_hr_price_list
 #: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_anchor__create_uid
 #: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_location__create_uid
 #: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__create_uid
@@ -383,17 +392,6 @@ msgid "Price list archive"
 msgstr "Arhiva cjenika"
 
 #. module: l10n_hr_price_list
-#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.res_config_settings_view_form_price_list
-msgid ""
-"Price list for consumers with the additional price, in a CSV file on a "
-"public link without login (NN 101/26). Each premises (shop, office, web "
-"shop…) publishes its own file: categories, webhook and versions."
-msgstr ""
-"Cjenik za potrošače s dodatnom cijenom, u CSV datoteci na javnoj poveznici "
-"bez prijave (NN 101/26). Svaki objekt (prodavaonica, ured, web shop…) "
-"objavljuje svoju datoteku: kategorije, webhook i verzije."
-
-#. module: l10n_hr_price_list
 #: model:ir.model,name:l10n_hr_price_list.model_product_pricelist
 msgid "Pricelist"
 msgstr "Cjenik"
@@ -504,11 +502,6 @@ msgstr "Posebni oblik prodaje"
 #: model:ir.model.fields,field_description:l10n_hr_price_list.field_l10n_hr_price_list_version__number
 msgid "Storage Number"
 msgstr "Broj pohrane"
-
-#. module: l10n_hr_price_list
-#: model_terms:ir.ui.view,arch_db:l10n_hr_price_list.product_template_form_view_price_list
-msgid "The additional price is set when the product is first published."
-msgstr "Dodatna cijena upisuje se pri prvoj objavi proizvoda."
 
 #. module: l10n_hr_price_list
 #. odoo-python

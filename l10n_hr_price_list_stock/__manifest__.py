@@ -1,6 +1,6 @@
 {
     "name": "Croatia - Public Price List: Stock per Premises",
-    "version": "19.0.1.0.2",
+    "version": "19.0.1.0.3",
     "category": "Accounting/Localizations",
     "summary": "Availability in the public price list (NN 101/26) from the warehouse of each premises",
     "description": """
