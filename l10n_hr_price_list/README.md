@@ -82,6 +82,26 @@ Treba aplikacija **Prodaja** s uključenim **Cjenicima**.
 3. Spremite. Cjenik prikazuje akcijsku cijenu i naziv od početka akcije, a ujutro nakon kraja opet redovnu
    cijenu.
 
+**Primjer:** senzor ima *Prodajnu cijenu* 19,00 € (bez PDV-a, uz porez 25 %). U zadani cjenik dodate pravilo:
+
+| Polje | Vrijednost |
+|---|---|
+| Primijeni na | Proizvod: *Senzor vrata/prozora* |
+| Vrsta cijene | Popust, `20` % |
+| Razdoblje važenja | 1. 11. 2026. 00:00 – 30. 11. 2026. 23:59 |
+| Posebni oblik prodaje | `Jesensko sniženje` |
+
+Od 1. 11. ujutro redak senzora u cjeniku glasi:
+
+| Stupac | Prije akcije | Za vrijeme akcije |
+|---|---|---|
+| `maloprodajna_cijena_eur` | 23,75 | **19,00** (15,20 € + PDV) |
+| `posebni_oblik_prodaje` | ne | **da** |
+| `naziv_posebnog_oblika_prodaje` | | **Jesensko sniženje** |
+| `dodatna_cijena_eur`, `datum_dodatne_cijene` | 26,25 · 19.10.2026 | 26,25 · 19.10.2026 (ne mijenja se) |
+
+Ponuda građaninu u studenom ima istu cijenu (15,20 € + PDV), a 1. 12. ujutro cjenik je opet na 23,75.
+
 - Pravilo **bez** naziva akcije je redovna cijena za potrošače, a ne akcija.
 - **Mnogo artikala:** jedno pravilo za njihovu kategoriju; ako nisu u jednoj kategoriji, pravila uvezite iz
   tablice: popis cjenika → označite zadani cjenik → **⚙ Radnje → Izvoz** s poljima *ID* i iz *Pravila
@@ -207,6 +227,33 @@ i usluge i za sve objekte. Naziv: `oblik objekta_adresa_oznaka_broj pohrane_datu
 - `content_base64` je propisana datoteka (objavite je takvu kakva jest). `rows` su njezini retci za prikaz na
   webu, uz `prodajna_cijena_bez_pdv_eur` (prodajna cijena bez PDV-a, npr. za tvrtke), a za vrijeme akcije i
   `cijena_prije_posebnog_oblika_prodaje_eur` i `najniza_cijena_30_dana_eur`.
+
+Redak u `rows` za vrijeme akcije (primjer iz poglavlja *Akcije*):
+
+```json
+{
+  "sifra": "SL-S-DOOR",
+  "naziv": "Senzor vrata/prozora",
+  "marka": "Aqara / Shelly",
+  "jedinica_mjere": "kom",
+  "maloprodajna_cijena_eur": "19,00",
+  "cijena_za_jedinicu_mjere_eur": "",
+  "jedinica_mjere_za_cijenu": "",
+  "posebni_oblik_prodaje": "da",
+  "naziv_posebnog_oblika_prodaje": "Jesensko sniženje",
+  "dodatna_cijena_eur": "26,25",
+  "datum_dodatne_cijene": "19.10.2026",
+  "barkod": "",
+  "raspolozivost": "dostupno",
+  "prodajna_cijena_bez_pdv_eur": "19,00",
+  "cijena_prije_posebnog_oblika_prodaje_eur": "23,75",
+  "najniza_cijena_30_dana_eur": "23,75"
+}
+```
+
+Na webu uz akcijsku cijenu (19,00 €) prikažite najnižu cijenu u 30 dana prije akcije (23,75 €), npr.
+„Jesensko sniženje: 19,00 € · najniža cijena u 30 dana prije akcije: 23,75 € · cijena na 19.10.2026.: 26,25 €“.
+`prodajna_cijena_bez_pdv_eur` je redovna prodajna cijena bez PDV-a, bez akcije.
 - Uz tajni ključ zaglavlje `X-Price-List-Signature: sha256=<HMAC-SHA256 tijela>`; web ga mora provjeriti.
 - Odgovor 2xx = primljeno (*Webhook: Poslano*); preusmjeravanja se ne slijede. Kod greške Odoo pokušava ponovno
   za sat vremena. Kad se webhook upiše naknadno, šalje se trenutna verzija. Web mora sam čuvati i objaviti

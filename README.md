@@ -16,7 +16,7 @@ greške i pitanja prijavite ovdje (Issues).
 <!-- modules -->
 | Module | Version | Description |
 |---|---|---|
-| [`l10n_hr_price_list`](./l10n_hr_price_list/) | 19.0.2.9.5 | Machine-readable price list (CSV) with the additional (anchor) price, as required by NN 101/26 |
+| [`l10n_hr_price_list`](./l10n_hr_price_list/) | 19.0.2.9.6 | Machine-readable price list (CSV) with the additional (anchor) price, as required by NN 101/26 |
 | [`l10n_hr_price_list_stock`](./l10n_hr_price_list_stock/) | 19.0.1.0.2 | Availability in the public price list (NN 101/26) from the warehouse of each premises |
 <!-- /modules -->
 
