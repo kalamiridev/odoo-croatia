@@ -15,7 +15,7 @@ from odoo.exceptions import AccessError, UserError
 
 from .price_list_version import (
     COLUMNS, LOWEST_PRICE_COLUMN, NET_COLUMN, PRICE_BEFORE_SALE_COLUMN, PRODUCT_KEY, format_amount, format_date,
-    local_now, parse_amount, public_rows,
+    local_now, local_time, parse_amount, public_rows,
 )
 
 # The lowest price before a special sale is looked up in these days before it.
@@ -350,9 +350,10 @@ class L10nHrPriceListLocation(models.Model):
 
     def _publish(self):
         """Publish a new version when the rows (also the sales prices sent on the webhook) or the
-        file name changed.
+        file name changed, and the first time each day also without changes, so there is a file of
+        the day (shops update the price list every day by 08:00; the morning cron runs before).
 
-        :returns: the new version, or an empty recordset when nothing changed
+        :returns: the new version, or an empty recordset when nothing changed today
         """
         self.ensure_one()
         problem = self._problem()
@@ -366,7 +367,7 @@ class L10nHrPriceListLocation(models.Model):
         published = json.dumps(public_rows(rows), ensure_ascii=False, sort_keys=True)
         checksum = hashlib.sha256(prefix.encode() + b"\0" + published.encode()).hexdigest()
         current = location._current_version()
-        if current.checksum == checksum:
+        if current.checksum == checksum and local_time(current.published_at).date() == local_now().date():
             return current.browse()
         number = current.number + 1
         name = f"{prefix}_{number:03d}_{local_now():%d.%m.%Y_%H:%M}.csv"

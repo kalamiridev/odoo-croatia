@@ -3,7 +3,7 @@
     <!-- Changes are published a minute after they are made (triggered). Once a day early in the
          morning (04:00 UTC: 05:00 or 06:00 in Zagreb, before 08:00) for what changes without an
          edit: stock (availability). A failed webhook is tried again
-         an hour later. A new version only when something changed. -->
+         an hour later. The morning run publishes a file of the day also without changes. -->
     <record id="ir_cron_price_list_publish" model="ir.cron">
         <field name="name">Public price list: publish changes</field>
         <field name="model_id" ref="model_l10n_hr_price_list_version"/>

@@ -1,6 +1,6 @@
 {
     "name": "Croatia - Public Price List for Consumers",
-    "version": "19.0.2.9.3",
+    "version": "19.0.2.9.5",
     "category": "Accounting/Localizations",
     "summary": "Machine-readable price list (CSV) with the additional (anchor) price, as required by NN 101/26",
     "description": """
@@ -18,9 +18,9 @@ additional price (price on 10 September 2026, or at the first offer) next to eve
   lists) are sent on the webhook,
 * additional price and its date saved per premises at the first publication of the product;
   later price changes do not change it,
-* a new version (storage number + 1, file name as prescribed) only when something changed,
-  published a minute after a change and checked every morning before 08:00 (stock, rules
-  with a period);
+* a new version (storage number + 1, file name as prescribed) a minute after a change and
+  every morning before 08:00 (a file of the day also without changes; stock, rules with a
+  period);
   old versions are kept,
 * public pages without login: /cjenik, /cjenik/<premises label> (current file),
   /cjenik/arhiva (all versions),

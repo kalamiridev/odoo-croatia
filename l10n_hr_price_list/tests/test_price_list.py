@@ -80,6 +80,19 @@ class TestPriceList(PriceListCommon):
         self.assertEqual(line["datum_dodatne_cijene"], "20.10.2026")
         self.assertEqual(self._lines(first)["SRV-1"]["maloprodajna_cijena_eur"], "125,00", "Old file unchanged")
 
+    def test_new_version_every_day(self):
+        """The first check of a day publishes a file of that day also without changes; later the same
+        day only changes do."""
+        first = self.location._publish()
+        with freeze_time("2026-10-21 04:00:00"):  # the morning cron, 06:00 in Zagreb
+            second = self.location._publish()
+            self.assertFalse(self.location._publish(), "Once a day without changes")
+        self.assertEqual(second.number, 2)
+        self.assertEqual(second.name, "servis_Vukovarska 20 Osijek_U-03_002_21.10.2026_06:00.csv")
+        self.assertEqual(second.checksum, first.checksum, "The same content")
+        self.assertEqual(self._lines(second), self._lines(first))
+        self.assertTrue(second.is_current)
+
     def test_new_product_gets_its_own_date(self):
         self.location._publish()
         with freeze_time("2026-11-02 06:00:00"):
