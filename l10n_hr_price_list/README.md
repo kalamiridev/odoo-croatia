@@ -1,8 +1,9 @@
 # Javni cjenik za potrošače (l10n_hr_price_list)
 
 Modul za Odoo 19 (Community i Enterprise). Sam sastavlja i objavljuje cjenik za potrošače u CSV datoteci,
-za svaki vaš objekt, s **dodatnom cijenom** uz svaku cijenu, kako traže odluke Vlade RH (NN 101/26, na snazi
-od 1. 10. 2026.). Vi upišete objekt i stavite poveznicu na svoju web stranicu; sve ostalo ide samo.
+za svaki vaš objekt, s **dodatnom cijenom** uz svaku cijenu, kako traže odluke Vlade RH (NN 101/26; primjena od
+**17. 11. 2026.**, odgođena izmjenama u NN 110/26; referentni datum ostaje 10. 9. 2026.). Vi upišete objekt i
+stavite poveznicu na svoju web stranicu; sve ostalo ide samo.
 
 ## Što propis traži i što radi modul
 
@@ -178,7 +179,9 @@ objektu upiše **Adresu webhooka** i **Tajni ključ webhooka**; tehnički opis j
   proizvode (sat rada, m², dolazak).
 - **Cijena za jedinicu mjere** (po kg ili l) puni se samo uz eCommerce (*Postavke → Web stranica →
   Referentna cijena proizvoda*, pa na proizvodu osnovna jedinica i količina).
-- Pravilnik o „baznim cijenama“ je u nacrtu; ako propiše drukčije nazive ili oblik, modul će se uskladiti.
+- **Pravilnici u savjetovanju** (do 13. 11. 2026., planirano stupanje na snagu 17. 11. 2026.): o isticanju
+  **bazne cijene** (novi naziv za dodatnu cijenu) i o sadržaju i načinu objave cjenika. Ako konačni tekst propiše
+  drukčije nazive, stupce ili pravila objave, modul će se uskladiti.
 
 ## Prijevod na hrvatski
 
