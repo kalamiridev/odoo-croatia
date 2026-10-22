@@ -22,8 +22,10 @@ greške i pitanja prijavite ovdje (Issues).
 
 ## Installation
 
-1. Download this branch (or clone it: `git clone -b 19.0 https://github.com/kalamiridev/odoo-croatia.git`) into a folder
-   on the addons path of your Odoo.
+1. Install from the **Odoo Apps Store**
+   ([Public Price List for Consumers](https://apps.odoo.com/apps/modules/19.0/l10n_hr_price_list)), or download this
+   branch (or clone it: `git clone -b 19.0 https://github.com/kalamiridev/odoo-croatia.git`) into a folder on the addons
+   path of your Odoo.
 2. Apps → Update Apps List → search the module → Activate.
 
 Each module's README (in Croatian) describes the setup step by step.
