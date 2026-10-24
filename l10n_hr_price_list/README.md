@@ -168,6 +168,12 @@ objektu upiše **Adresu webhooka** i **Tajni ključ webhooka**; tehnički opis j
 - **Kriva dodatna cijena ili datum** – administrator je ispravi na proizvodu (odjeljak **Javni cjenik**).
 - **Objekt se zatvara** – arhivirajte ga; objavljeni cjenici ostaju javni.
 - **Webhook: Greška** – razlog piše na verziji (**Verzije**); Odoo pokušava ponovno svaki sat.
+- **Jutros nema nove datoteke** – objavu radi zakazana akcija *Javni cjenik: objava promjena* (*Postavke →
+  Tehnički → Zakazane akcije*, uz način rada za programere). Ako je **Zadnji datum izvršenja** star, ne rade sve
+  zakazane akcije Odoo-a, ne samo cjenik. Česti uzrok: Odoo radi bez workera (`workers = 0`) i baza se restartala –
+  zakazane akcije tada mogu stati do ponovnog pokretanja Odoo-a. Za produkciju Odoo preporučuje `workers` ≥ 2
+  (zakazane akcije u zasebnom procesu koji se sam ponovno pokreće) i praćenje (npr. upozorenje kad je zadnje
+  izvršenje zakazanih akcija starije od 15 minuta). Do tada: **Objavi cjenik sada** na objektu.
 
 ## Ograničenja
 
